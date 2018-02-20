@@ -1,7 +1,7 @@
-class ComedyShows:CLI
+class ComedyShows::CLI
 
   def call
-      welcome
+      start
     end
 
     def start
@@ -12,7 +12,8 @@ class ComedyShows:CLI
 
       input = gets.strip.downcase
 
-      print_shows(input) #check to validate the input
+      print_shows(input)
+      # figure out how to validate the input
       # puts ""
       # puts "Please enter 'y' to see the first ten shows coming up, or enter 'exit' to exit the program."
       #   input = gets.strip.downcase
@@ -44,7 +45,7 @@ class ComedyShows:CLI
       elsif from_month == "april"
         puts "April shows..."
       else
-        puts "oh nooo"
+        puts "ooh noooo" #this needs to loop properly if the input is wrong
       end
     end
 
