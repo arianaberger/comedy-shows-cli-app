@@ -1,7 +1,10 @@
 class ComedyShows::CLI
 
+  BASE_PATH = "https://www.dcimprov.com/"
+
   def call
     make_shows #creates the initial array of shows from the index page
+    add_details_to_show
     puts ""
     puts "Welcome!"
     start
@@ -20,12 +23,9 @@ class ComedyShows::CLI
     puts ""
     puts "Enter the number of the show you would like more information on:"
 
-    input = gets.strip.to_i
+    input = gets.strip.to_i - 1
 
-    #consolidate into 1 method
-    show_url = shows[input - 1].url
-    show_details = ComedyShows::Scraper.scrape_show_details(show_url)
-    print_show_details(show_details)
+    print_show_details(input)
 
     puts ""
     puts "Would you like to view more comedy shows? Enter 'Y' or 'N'"
@@ -43,6 +43,13 @@ class ComedyShows::CLI
     def make_shows
       shows_hash = ComedyShows::Scraper.scrape_shows_list #first scrape the shows from the main schedule page
       ComedyShows::Shows.create_shows(shows_hash) #now we have instances of shows in ComedyShows::Shows.all
+    end
+
+    def add_details_to_show
+      ComedyShows::Shows.all.each do |s|
+        details = ComedyShows::Scraper.scrape_show_details(BASE_PATH + s.url) #creates a hash of details
+          s.add_show_details(details) #inputs this hash of extra details to the show
+        end
     end
 
     def get_shows_from_month(month_input) #this makes the shows and then pulls only those from the specified month input
@@ -69,9 +76,8 @@ class ComedyShows::CLI
       end
     end
 
-    def print_show_details(show_details) #argument is a show instance to be printed
+    def print_show_details(show) #argument is a show instance to be printed
       puts "#{show.name}"
-
     end
 
 

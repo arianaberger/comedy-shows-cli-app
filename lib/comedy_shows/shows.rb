@@ -2,7 +2,7 @@ class ComedyShows::Shows
 
   attr_accessor :name, :description, :date, :month, :url
 
-  @@all = []
+  @@all = [] #incorporate all scraped data here
 
   def initialize(show_hash)
     show_hash.each{|k,v| self.send("#{k}=", v)}
@@ -15,12 +15,12 @@ class ComedyShows::Shows
     end
   end
 
-  def self.all
-    @@all
+  def add_show_details(details_hash)
+    details_hash.each{|k,v| self.send("#{k}=",v)}
   end
 
-  def self.find_by_month(month)
-    #find from @@all if :month == month
+  def self.all
+    @@all
   end
 
 
