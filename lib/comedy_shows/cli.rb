@@ -43,6 +43,7 @@ class ComedyShows::CLI
       if from_month == "march"
         puts "March shows..."
       elsif from_month == "april"
+        ComedyShows::Scraper.scrape_shows_list
         puts "April shows..."
       else
         puts "ooh noooo" #this needs to loop properly if the input is wrong
