@@ -39,12 +39,14 @@ class ComedyShows::CLI
 
     end
 
-    def print_shows(from_month)
-      if from_month == "march"
-        puts "March shows..."
-      elsif from_month == "april"
-        ComedyShows::Scraper.scrape_shows_list
+    def make_shows(from_month)
+      all_shows_list = ComedyShows::Scraper.scrape_shows_list #first scrape the shows from the main schedule page
+      ComedyShows::Shows.
+
+
+      if from_month == "april"
         puts "April shows..."
+        ComedyShows::Shows.find_by_month(from_month)
       else
         puts "ooh noooo" #this needs to loop properly if the input is wrong
       end

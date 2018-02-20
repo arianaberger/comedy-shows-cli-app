@@ -1,32 +1,24 @@
-class ComedyShows::Show
+class ComedyShows::Shows
 
-  attr_accessor :name, :month, :date, :url
+  attr_accessor :name, :description, :date, :month, :url
 
   @@all = []
 
-  def initialize(name=nil, month=nil, date=nil, url=nil)
-    @name = name
-    @month = month
-    @date = date
-    @url = url
+  def initialize(show_hash)
+    show_hash.each{|k,v| self.send("#{k}=", v)}
     @@all << self
   end
 
-  def new_show_from_list(s) #this creates a new instance with default inputs from the html
-    self.new(
-    s.css("h2 a").text,
-    s.css("p").text,
-    s.css("span.scheduledate").text,
-    s.css("span.scheduledate").text, #just get the month from here. Maybe 1st 3 letters?
-    s.css("h2 a")[0]["href"]
-    )
+  def create_shows(shows_array) #creates array of show instances from the main schedule page using the scraper hash
+    shows_array.each do |s|
+      ComedyShows::Shows.new(r)
   end
 
   def self.all
     @@all
   end
 
-  def self.find(month)
+  def self.find_by_month(month)
     #find from @@all if :month == month
   end
 
