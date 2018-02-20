@@ -1,6 +1,7 @@
 class ComedyShows::CLI
 
   def call
+    make_shows #creates the initial array of shows from the index page
     puts ""
     puts "Welcome!"
     start
@@ -21,7 +22,8 @@ class ComedyShows::CLI
 
     input = gets.strip.to_i
 
-    get_shows_from_month(input)
+    show = shows[input]
+    print_show_details(show)
 
     puts ""
     puts "Would you like to view more comedy shows? Enter 'Y' or 'N'"
@@ -36,8 +38,12 @@ class ComedyShows::CLI
       end
     end
 
+    def make_shows
+      shows_hash = ComedyShows::Scraper.scrape_shows_list #first scrape the shows from the main schedule page
+      ComedyShows::Shows.create_shows(shows_hash) #now we have instances of shows in ComedyShows::Shows.all
+    end
+
     def get_shows_from_month(month_input) #this makes the shows and then pulls only those from the specified month input
-      make_shows
       month_array = []
       ComedyShows::Shows.all.each do |s|
         if s.month == month_input
@@ -51,11 +57,6 @@ class ComedyShows::CLI
       month_array
     end
 
-      def make_shows
-        all_shows_list = ComedyShows::Scraper.scrape_shows_list #first scrape the shows from the main schedule page
-        ComedyShows::Shows.create_shows(all_shows_list) #now we have instances of shows in ComedyShows::Shows.all
-      end
-
     def print_shows(list) #list will be an array of show instances from the main schedule page
       list.each.with_index(1) do |s, i|
         puts "------------------------"
@@ -65,6 +66,12 @@ class ComedyShows::CLI
         puts ""
       end
     end
+
+    def print_show_details(show) #argument is a show instance to be printed
+      show
+
+    end
+
 
 
 

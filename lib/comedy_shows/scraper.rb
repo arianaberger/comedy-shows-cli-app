@@ -21,12 +21,6 @@ class ComedyShows::Scraper
     shows_array
   end
 
-  def self.scrape_show_details
-    ##re-work
-    scrape_shows_index.each do |s|
-      ComedyShows::Scraper.new_show_from_list(s)
-    end
-  end
 
 
 end

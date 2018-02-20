@@ -3,3 +3,7 @@
 require_relative '../lib/comedy_shows'
 
 ComedyShows::CLI.new.call
+
+
+#Aug isn't working - repeats Sheryl Underwood
+# Jun just repeats the same shows over and over
