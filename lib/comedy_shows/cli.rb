@@ -1,65 +1,71 @@
 class ComedyShows::CLI
 
   def call
-      start
+    puts ""
+    puts "Welcome!"
+    start
     end
 
-    def start
-      puts ""
-      puts "Welcome! Enter which month you'd like to see the upcoming shows for:"
+  def start
+    puts ""
+    puts "Enter which month you'd like to see the upcoming shows for:"
+    puts "(e.g. 'Feb' for February or 'Jul' for July)"
 
-      list_months
+    input = gets.strip.downcase
 
-      input = gets.strip.downcase
+    shows = get_shows_from_month(input)
+    print_shows(shows)
 
-      print_shows(input)
-      # figure out how to validate the input
-      # puts ""
-      # puts "Please enter 'y' to see the first ten shows coming up, or enter 'exit' to exit the program."
-      #   input = gets.strip.downcase
+    puts ""
+    puts "Enter the number of the show you would like more information on:"
 
-      puts ""
-      puts "Enter the number of the show you would like more information on:"
+    input = gets.strip.to_i
 
-      input = gets.strip.to_i
+    get_shows_from_month(input)
 
-      print_show(input)
+    puts ""
+    puts "Would you like to view more comedy shows? Enter 'Y' or 'N'"
 
-      puts ""
-      puts "Would you like to view more comedy shows? Enter 'Y' or 'N'"
-
-      input = gets.strip.downcase
-          if input == "y"
-            start
-          else
-            puts ""
-            puts "Thank you, come back again soon!"
-            exit
-          end
-
-    end
-
-    def make_shows(from_month)
-      all_shows_list = ComedyShows::Scraper.scrape_shows_list #first scrape the shows from the main schedule page
-      ComedyShows::Shows.
-
-
-      if from_month == "april"
-        puts "April shows..."
-        ComedyShows::Shows.find_by_month(from_month)
+    input = gets.strip.downcase
+      if input == "y"
+        start
       else
-        puts "ooh noooo" #this needs to loop properly if the input is wrong
+        puts ""
+        puts "Thank you, come back again soon!"
+        exit
       end
     end
 
-    def print_show(from_number)
-      puts "This is the info of show #{from_number}!"
+    def get_shows_from_month(month_input) #this makes the shows and then pulls only those from the specified month input
+      make_shows
+      month_array = []
+      ComedyShows::Shows.all.each do |s|
+        if s.month == month_input
+          month_array << s
+        end
+      end
+      if month_array.count == 0 #checks that the month is correct
+        puts "Sorry, there are no shows for that month!"
+        start
+      end
+      month_array
     end
 
-    def list_months
-      puts "February"
-      puts "March"
-      puts "April"
+      def make_shows
+        all_shows_list = ComedyShows::Scraper.scrape_shows_list #first scrape the shows from the main schedule page
+        ComedyShows::Shows.create_shows(all_shows_list) #now we have instances of shows in ComedyShows::Shows.all
+      end
+
+    def print_shows(list) #list will be an array of show instances from the main schedule page
+      list.each.with_index(1) do |s, i|
+        puts "------------------------"
+        puts "#{i}. #{s.name.upcase}".colorize(:blue)
+        puts "Date(s): #{s.date}"
+        puts "Description: #{s.description}"
+        puts ""
+      end
     end
+
+
 
 end

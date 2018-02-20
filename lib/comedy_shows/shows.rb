@@ -9,9 +9,10 @@ class ComedyShows::Shows
     @@all << self
   end
 
-  def create_shows(shows_array) #creates array of show instances from the main schedule page using the scraper hash
+  def self.create_shows(shows_array) #creates array of show instances from the main schedule page using the scraper hash
     shows_array.each do |s|
-      ComedyShows::Shows.new(r)
+      ComedyShows::Shows.new(s)
+    end
   end
 
   def self.all
