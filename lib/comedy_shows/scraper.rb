@@ -14,12 +14,23 @@ class ComedyShows::Scraper
         :description => s.css("p").text,
         :date => s.css("span.scheduledate").text,
         :month => s.css("span.scheduledate").text.slice(0..2).downcase, #1st 3 letters of the month, e.g. "Feb"
-        # :url => s.css("h2 a")[0]["href"]
+        :url => s.css("h2 a")[0]["href"]
       }
+      # binding.pry
+
       shows_array << shows_hash
     end
     shows_array
   end
+
+  def self.scrape_show_details(profile_url) #produces a hash of details on one specific show
+binding.pry
+    doc = Nokogiri::HTML(open(profile_url))
+      profile_hash = {
+          :price => doc.css("div.media li.first").text
+        }
+  end
+
 
 
 

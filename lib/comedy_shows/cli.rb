@@ -22,8 +22,10 @@ class ComedyShows::CLI
 
     input = gets.strip.to_i
 
-    show = shows[input]
-    print_show_details(show)
+    #consolidate into 1 method
+    show_url = shows[input - 1].url
+    show_details = ComedyShows::Scraper.scrape_show_details(show_url)
+    print_show_details(show_details)
 
     puts ""
     puts "Would you like to view more comedy shows? Enter 'Y' or 'N'"
@@ -67,8 +69,8 @@ class ComedyShows::CLI
       end
     end
 
-    def print_show_details(show) #argument is a show instance to be printed
-      show
+    def print_show_details(show_details) #argument is a show instance to be printed
+      puts "#{show.name}"
 
     end
 
