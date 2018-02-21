@@ -25,11 +25,6 @@ class ComedyShows::Scraper
     # binding.pry
     doc = Nokogiri::HTML(open(profile_url)) #for some reason doc isn't registering
       profile_hash = {
-      #     :tag_1 => Nokogiri::HTML(open(profile_url)).css("div.media li[1]").text,
-      #     :tag_2 => Nokogiri::HTML(open(profile_url)).css("div.media li[2]").text #don't include if text doesn't include "Showtime"
-      #     # :tag_3 => doc.css("div.media li[3]").text, #don't need?
-      #     # :spotlight => doc.css("div.box[2] p").text,
-      #   }
         :tag_1 => doc.css("div.media li[1]").text,
         :tag_2 => doc.css("div.media li[2]").text, #don't include if text doesn't include "Showtime"
         :tag_3 => doc.css("div.media li[3]").text, #don't need?

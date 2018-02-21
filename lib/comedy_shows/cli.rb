@@ -47,7 +47,7 @@ class ComedyShows::CLI
 
     def add_details_to_show
       ComedyShows::Shows.all.each do |s|
-        details = ComedyShows::Scraper.scrape_show_details(BASE_PATH + s.url) #creates a hash of details
+        details = ComedyShows::Scraper.scrape_show_details(BASE_PATH + "#{s.url}") #creates a hash of details
           s.add_show_details(details) #inputs this hash of extra details to the show
         end
     end
@@ -77,8 +77,11 @@ class ComedyShows::CLI
     end
 
     def print_show_details(show) #argument is a show instance to be printed
-      puts "#{show.name}"
-      puts "#{show.description}"
+      puts "#{show.tag_1}"
+      puts "#{show.tag_2}"
+      puts "#{show.tag_3}"
+      puts "#{show.spotlight}"
+
     end
 
 
