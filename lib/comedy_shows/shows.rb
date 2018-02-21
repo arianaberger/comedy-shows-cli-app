@@ -1,6 +1,6 @@
 class ComedyShows::Shows
 
-  attr_accessor :name, :description, :date, :month, :url
+  attr_accessor :name, :description, :date, :month, :url, :tag_1, :tag_2, :tag_3, :spotlight
 
   @@all = [] #incorporate all scraped data here
 

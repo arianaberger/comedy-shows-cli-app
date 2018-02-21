@@ -4,7 +4,7 @@ class ComedyShows::CLI
 
   def call
     make_shows #creates the initial array of shows from the index page
-    # add_details_to_show
+    add_details_to_show
     puts ""
     puts "Welcome!"
     start
