@@ -4,7 +4,7 @@ class ComedyShows::CLI
 
   def call
     make_shows #creates the initial array of shows from the index page
-    add_details_to_show
+    # add_details_to_show
     puts ""
     puts "Welcome!"
     start
@@ -24,8 +24,8 @@ class ComedyShows::CLI
     puts "Enter the number of the show you would like more information on:"
 
     input = gets.strip.to_i - 1
-
-    print_show_details(input)
+    show = shows[input] # equals the show instance
+    print_show_details(show)
 
     puts ""
     puts "Would you like to view more comedy shows? Enter 'Y' or 'N'"
@@ -78,6 +78,7 @@ class ComedyShows::CLI
 
     def print_show_details(show) #argument is a show instance to be printed
       puts "#{show.name}"
+      puts "#{show.description}"
     end
 
 
