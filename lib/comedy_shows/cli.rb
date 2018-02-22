@@ -34,7 +34,7 @@ class ComedyShows::CLI
         start
       else
         puts ""
-        puts "Thank you, come back again soon!"
+        puts "Thank you for supporting local comedy!"
         exit
       end
     end
@@ -76,9 +76,9 @@ class ComedyShows::CLI
       puts ""
       puts "-------------#{show.name.upcase}-----------".colorize(:red)
       puts ""
-      puts "#{show.price}" unless show.price == nil
-      puts "#{show.showtime}" unless show.showtime == nil
-      puts "Address: #{show.address}"
+      puts "Price:         #{show.price}" unless show.price == nil
+      puts "Showtime(s):   #{show.showtime}" unless show.showtime == nil
+      puts "Address:       #{show.address}"
       puts ""
       puts "DESCRIPTION:".colorize(:green)
       puts "#{show.spotlight}"
