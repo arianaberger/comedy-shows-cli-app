@@ -19,7 +19,7 @@ class ComedyShows::CLI
     shows = get_shows_from_month(input)
     print_shows(shows)
 
-    puts ""
+    puts "-------------".colorize(:blue)
     puts "Enter the number of the show you would like more information on:"
 
     input = gets.strip.to_i - 1
@@ -62,7 +62,7 @@ class ComedyShows::CLI
 
     def print_shows(list) #list will be an array of show instances from the main schedule page
       list.each.with_index(1) do |s, i|
-        puts "------------------------"
+        puts ""
         puts "#{i}. #{s.name.upcase}".colorize(:blue)
         puts "Date(s): #{s.date}"
         puts "Description: #{s.description}"
@@ -76,13 +76,14 @@ class ComedyShows::CLI
       puts ""
       puts "-------------#{show.name.upcase}-----------".colorize(:red)
       puts ""
-      puts "     #{show.price}" unless show.price == nil
-      puts " #{show.showtime}" unless show.showtime == nil
-      puts "   Address: #{show.address}"
+      puts "#{show.price}" unless show.price == nil
+      puts "#{show.showtime}" unless show.showtime == nil
+      puts "Address: #{show.address}"
       puts ""
-      puts "Description"
+      puts "DESCRIPTION:".colorize(:green)
       puts "#{show.spotlight}"
       puts ""
+      puts "-------------".colorize(:red)
     end
 
 end

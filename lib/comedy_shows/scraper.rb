@@ -9,6 +9,10 @@ class ComedyShows::Scraper
 
     doc.css("div.leading").each do |s|
       url = s.css("h2 a")[0]['href'] unless s.css("h2 a")[0] == nil
+      # if s.css("h2 a").text == " "
+      #   name = s.css("h3 a").text
+      # else name = s.css("h2 a").text
+      # end
       shows_hash = {
         :name => s.css("h2 a").text,
         :description => s.css("p").text,
@@ -16,16 +20,17 @@ class ComedyShows::Scraper
         :month => s.css("span.scheduledate").text.slice(0..2).downcase, #1st 3 letters of the month, e.g. "Feb"
         :url => url
       }
-      shows_array << shows_hash
+      shows_array << shows_hash if shows_hash[:name] != "" && shows_hash[:url] != ""
     end
     shows_array
+
   end
 
   def self.scrape_show_details(profile_url) #produces a hash of details on one specific show
     doc = Nokogiri::HTML(open(profile_url))
 
-    price = doc.css("div.media li[1]").text unless doc.css("div.media li[1]") == nil
-    showtime = doc.css("div.media li[2]").text unless doc.css("div.media li[2]") == nil
+    price = doc.css("div.media li[1]").text unless doc.css("div.media li[1]") == nil || doc.css("div.media li[1]").text.include?("Price") == false
+    showtime = doc.css("div.media li[2]").text unless doc.css("div.media li[2]") == nil || doc.css("div.media li[2]").text.include?("Showtime") == false
     spotlight = doc.css("div.box[3] p").text.strip unless doc.css("div.box[2] p") == nil
 
       profile_hash = {
