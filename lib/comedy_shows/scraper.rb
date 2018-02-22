@@ -35,13 +35,10 @@ class ComedyShows::Scraper
 
       profile_hash = {
         :price => price,
-        :showtime => showtime, 
+        :showtime => showtime,
         :spotlight => spotlight,
         :address => doc.css("footer#footer p").text.slice(0..37)
       }
   end
-
-
-
 
 end

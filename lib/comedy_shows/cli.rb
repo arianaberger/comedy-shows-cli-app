@@ -30,9 +30,12 @@ class ComedyShows::CLI
     puts "Would you like to view more comedy shows? Enter 'Y' or 'N'"
 
     input = gets.strip.downcase
+    # until input == "y" || input == "n" #how to get this to not be an infite loop
+    #   puts ""
+    #   puts "Thank you for supporting local comedy!"
       if input == "y"
         start
-      else
+      elsif input == "n"
         puts ""
         puts "Thank you for supporting local comedy!"
         exit
@@ -80,8 +83,8 @@ class ComedyShows::CLI
       puts "Showtime(s):   #{show.showtime}" unless show.showtime == nil
       puts "Address:       #{show.address}"
       puts ""
-      puts "DESCRIPTION:".colorize(:green)
-      puts "#{show.spotlight}"
+      puts "DESCRIPTION:".colorize(:yellow)
+      puts "#{show.spotlight}".colorize(:yellow)
       puts ""
       puts "-------------".colorize(:red)
     end
