@@ -27,34 +27,14 @@ class ComedyShows::CLI
     print_show_details(show_url)
 
     see_shows
-    # puts ""
-    # puts "Would you like to view more comedy shows? Enter 'Y' or 'N'"
-    #
-    # input = gets.strip.downcase
-    # # until input == "y" || input == "n" #how to get this to not be an infite loop
-    # #   puts ""
-    # #   puts "Thank you for supporting local comedy!"
-    #   if input == "y"
-    #     start
-    #   elsif input == "n"
-    #     puts ""
-    #     puts "Thank you for supporting local comedy!"
-    #     exit
-    #   else
-    #     puts
-    #     input =
-    #   end
 
     end
 
-    def see_shows
+    def see_shows #loop!
       puts ""
       puts "Would you like to view more comedy shows? Enter 'Y' or 'N'"
 
       input = gets.strip.downcase
-      # until input == "y" || input == "n" #how to get this to not be an infite loop
-      #   puts ""
-      #   puts "Thank you for supporting local comedy!"
       if input == "y"
         start
       elsif input == "n"
