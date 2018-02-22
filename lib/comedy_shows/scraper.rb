@@ -22,13 +22,17 @@ class ComedyShows::Scraper
   end
 
   def self.scrape_show_details(profile_url) #produces a hash of details on one specific show
-    # binding.pry
-    doc = Nokogiri::HTML(open(profile_url)) #for some reason doc isn't registering
+    doc = Nokogiri::HTML(open(profile_url))
+
+    price = doc.css("div.media li[1]").text unless doc.css("div.media li[1]") == nil
+    showtime = doc.css("div.media li[2]").text unless doc.css("div.media li[2]") == nil
+    spotlight = doc.css("div.box[3] p").text.strip unless doc.css("div.box[2] p") == nil
+
       profile_hash = {
-        :tag_1 => doc.css("div.media li[1]").text,
-        :tag_2 => doc.css("div.media li[2]").text, #don't include if text doesn't include "Showtime"
-        :tag_3 => doc.css("div.media li[3]").text, #don't need?
-        :spotlight => doc.css("div.box[2] p").text,
+        :price => price,
+        :showtime => showtime, #don't include if text doesn't include "Showtime"
+        :spotlight => spotlight,
+        :address => doc.css("footer#footer p").text.slice(0..37)
       }
   end
 

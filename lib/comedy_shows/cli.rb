@@ -72,11 +72,17 @@ class ComedyShows::CLI
 
     def print_show_details(url) #argument is a show instance to be printed
       show = ComedyShows::Shows.add_details_to_show(url)
-      #  binding.pry
-      puts "#{show.tag_1}"
-      puts "#{show.tag_2}"
-      puts "#{show.tag_3}"
+
+      puts ""
+      puts "-------------#{show.name.upcase}-----------".colorize(:red)
+      puts ""
+      puts "     #{show.price}" unless show.price == nil
+      puts " #{show.showtime}" unless show.showtime == nil
+      puts "   Address: #{show.address}"
+      puts ""
+      puts "Description"
       puts "#{show.spotlight}"
+      puts ""
     end
 
 end
