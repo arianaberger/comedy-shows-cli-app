@@ -1,4 +1,4 @@
-# require_relative './lib/wine-and-dine/version'
+require_relative './lib/comedy_shows/version'
 
 Gem::Specification.new do |s|
   s.name        = 'comedy-shows'
