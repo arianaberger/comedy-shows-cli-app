@@ -5,13 +5,13 @@ class ComedyShows::CLI
   def call
     make_shows #creates the initial array of shows from the index page
     puts ""
-    puts "Welcome!"
+    puts "Welcome to the Comedy Shows CLI app!"
     start
     end
 
   def start
     puts ""
-    puts "Enter which month you'd like to see the upcoming shows for:"
+    puts "Enter which month you'd like to see upcoming shows for at the DC Improv Comedy Club:"
     puts "(e.g. 'Feb' for February or 'Jul' for July)"
 
     input = gets.strip.downcase
