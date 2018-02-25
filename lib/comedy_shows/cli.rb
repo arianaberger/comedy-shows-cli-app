@@ -42,7 +42,7 @@ class ComedyShows::CLI
         puts "Thank you for supporting local comedy!"
         exit
       else
-        puts "Sorry please...try again"
+        puts "Sorry, please try again..."
         see_shows
       end
     end
