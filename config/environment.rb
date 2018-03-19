@@ -1,4 +1,4 @@
-#this file is required by wine_and_dine, add all requirement here!
+#this file is required by comedy_shows.rb, add all requirements here!
 
 require 'pry'
 require 'nokogiri'
