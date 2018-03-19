@@ -42,6 +42,7 @@ class ComedyShows::CLI
         puts "Thank you for supporting local comedy!"
         exit
       else
+        puts ""
         puts "Sorry, please try again..."
         see_shows
       end
@@ -61,6 +62,7 @@ class ComedyShows::CLI
         end
       end
       if month_array.count == 0 #checks that the month is correct
+        puts ""
         puts "Sorry, there are no shows for that month!"
         start
       end
@@ -78,8 +80,8 @@ class ComedyShows::CLI
       end
     end
 
-    def print_show_details(url) #argument is a show instance to be printed
-      show = ComedyShows::Shows.add_details_to_show(url)
+    def print_show_details(url) #argument is a show url, which is converted to an instance to be printed
+      show = ComedyShows::Shows.add_details_to_show(url) #detect method finds matching show, adds details, and returns it
 
       puts ""
       puts "-------------#{show.name.upcase}-----------".colorize(:red)

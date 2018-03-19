@@ -17,13 +17,13 @@ class ComedyShows::Shows
     end
   end
 
-  def self.add_details_to_show(url) #this should all be done via Show Class! Change to do only one show at a time
+  def self.add_details_to_show(url)
     details = ComedyShows::Scraper.scrape_show_details(BASE_PATH + "#{url}") #creates a hash of details
     ComedyShows::Shows.all.detect do |s|
       if s.url == url
         details.each{|k,v| s.send("#{k}=", v)} #adds the individual details hash to the correct instance of show
       end
-    end
+    end 
   end
 
   def self.all
