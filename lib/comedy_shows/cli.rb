@@ -61,7 +61,7 @@ class ComedyShows::CLI
           month_array << s
         end
       end
-      if month_array.count == 0 #checks that the month is correct
+      if month_array.count == 0 #checks that there are shows for that month 
         puts ""
         puts "Sorry, there are no shows for that month!"
         start
