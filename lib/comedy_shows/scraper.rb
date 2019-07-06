@@ -44,9 +44,6 @@ class ComedyShows::Scraper
     #    end
 
 
-
-
-
   def self.scrape_show_details(profile_url) #produces a hash of details on one specific show
     doc = Nokogiri::HTML(open(profile_url))
 
