@@ -4,19 +4,16 @@ This Ruby Gem provides a CLI to view the monthly comedy shows playing at the DC 
 
 ## Installation
 
-    $ gem install comedy-shows
+Clone the respository and make sure to install dependencies by running the following:
+
+    $ bundle install
 
 ## Usage
 
-Type the below and follow the on screen prompts.
+To run the CLI, enter the command below and follow the on screen prompts:
 
-    $ comedy-shows
+    $ ruby bin/comedy_shows
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
